@@ -18,13 +18,11 @@ function createGameboard() {
     const markTile = (row, col, marker) => {
         let validTile = false;
 
-        if (row < 0 || row > 3 || col < 0 || col > 3) {
+        if (row < 0 || row > 3 || col < 0 || col > 3 || board[row][col]) {
             console.log('Invalid choice');
-        } else if (board[row][col] === 0) {
+        } else  {
             board[row][col] = marker;
             validTile = true;
-        } else {
-            console.log('Invalid choice');
         };
 
         return validTile;
@@ -61,7 +59,7 @@ function createGameboard() {
         for (let i = 0; i < 3; i++) {
             board[i] = [];
             for (let j = 0; j < 3; j++) {
-                board[i][j] = 0;
+                board[i][j] = '';
             };
         };
     };
