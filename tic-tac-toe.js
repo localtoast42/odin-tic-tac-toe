@@ -15,13 +15,6 @@ function createPlayer(name, marker) {
 function createGameboard() {
     const board = []
 
-    for (let i = 0; i < 3; i++) {
-        board[i] = [];
-        for (let j = 0; j < 3; j++) {
-            board[i][j] = 0;
-        };
-    };
-
     const markTile = (row, col, marker) => {
         let validTile = false;
 
@@ -60,7 +53,16 @@ function createGameboard() {
         };
         
         return false;
-    }
+    };
+
+    const resetBoard = () => {
+        for (let i = 0; i < 3; i++) {
+            board[i] = [];
+            for (let j = 0; j < 3; j++) {
+                board[i][j] = 0;
+            };
+        };
+    };
 
     const printBoard = () => {
         for (i = 0; i < 3; i++) {
@@ -68,9 +70,12 @@ function createGameboard() {
         };
     };
 
+    resetBoard();
+
     return {
         markTile,
         checkWinCondition,
+        resetBoard,
         printBoard,
     };
 }
@@ -109,6 +114,12 @@ const game = (function () {
             console.log('Game ends in a tie. Play again?');
         };
     };
+    
+    const resetGame = () => {
+        turn = 0;
+        winner = false;
+        board.resetBoard();
+    };
 
     const printNewRound = () => {
         board.printBoard();
@@ -120,5 +131,6 @@ const game = (function () {
     return {
         playTurn,
         getActivePlayer,
+        resetGame,
     };
 })();
