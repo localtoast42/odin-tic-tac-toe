@@ -1,4 +1,4 @@
-function Player(name, marker) {
+function createPlayer(name, marker) {
     let wins = 0;
 
     const getWins = () => wins;
@@ -12,7 +12,7 @@ function Player(name, marker) {
     };
 }
 
-function Gameboard() {
+function createGameboard() {
     const board = []
 
     for (let i = 0; i < 3; i++) {
@@ -32,3 +32,18 @@ function Gameboard() {
         markTile,
     };
 }
+
+const game = (function () {
+    const playGame = () => {
+        const board = createGameboard();
+        const turn = 0;
+        const playerOne = createPlayer(name, 'X');
+        const playerTwo = createPlayer(name, '0');
+    };
+
+    return {
+        playGame,
+    };
+})();
+
+game.playGame;
