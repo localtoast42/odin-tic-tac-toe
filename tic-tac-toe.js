@@ -55,6 +55,8 @@ function createGameboard() {
         return false;
     };
 
+    const getBoard = () => board;
+
     const resetBoard = () => {
         for (let i = 0; i < 3; i++) {
             board[i] = [];
@@ -75,6 +77,7 @@ function createGameboard() {
     return {
         markTile,
         checkWinCondition,
+        getBoard,
         resetBoard,
         printBoard,
     };
@@ -132,5 +135,27 @@ const game = (function () {
         playTurn,
         getActivePlayer,
         resetGame,
+        getBoard: board.getBoard,
     };
 })();
+
+function ScreenController(game) {
+    const boardDiv = document.querySelector('.board');
+
+    const updateScreen = () => {
+        const board = game.getBoard();
+
+        for (row = 0; row < 3; row++) {
+            for (col = 0; col < 3; col++) {
+                const tileButton = document.createElement('button');
+                tileButton.classList.add('tile');
+                tileButton.textContent = board[row][col];
+                boardDiv.appendChild(tileButton);
+            }
+        }
+    }
+
+    updateScreen();
+}
+
+ScreenController(game);
