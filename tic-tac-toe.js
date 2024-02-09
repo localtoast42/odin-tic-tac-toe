@@ -28,22 +28,41 @@ function createGameboard() {
         };
     };
 
+    const printBoard = () => {
+        console.log(board);
+    };
+
     return {
         markTile,
+        printBoard,
     };
 }
 
 const game = (function () {
-    const playGame = () => {
-        const board = createGameboard();
-        const turn = 0;
-        const playerOne = createPlayer(name, 'X');
-        const playerTwo = createPlayer(name, '0');
+    const board = createGameboard();
+    const players = [
+        createPlayer('Player One', 'X'),
+        createPlayer('Player Two', '0'),
+    ];
+    let turn = 0;
+
+    const getActivePlayer = () => players[turn % 2];
+
+    const playTurn = (row, col) => {
+        board.markTile(row, col, getActivePlayer().marker);
+        turn++;
+        printNewRound();
     };
+
+    const printNewRound = () => {
+        board.printBoard();
+        console.log(`${getActivePlayer().name}'s turn`);
+    };
+
+    printNewRound();
 
     return {
-        playGame,
+        playTurn,
+        getActivePlayer,
     };
 })();
-
-game.playGame;
