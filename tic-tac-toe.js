@@ -23,9 +23,18 @@ function createGameboard() {
     };
 
     const markTile = (row, col, marker) => {
-        if (board[row][col] === 0) {
+        let validTile = false;
+
+        if (row < 0 || row > 3 || col < 0 || col > 3) {
+            console.log('Invalid choice');
+        } else if (board[row][col] === 0) {
             board[row][col] = marker;
+            validTile = true;
+        } else {
+            console.log('Invalid choice');
         };
+
+        return validTile;
     };
 
     const printBoard = () => {
@@ -51,9 +60,10 @@ const game = (function () {
     const getActivePlayer = () => players[turn % 2];
 
     const playTurn = (row, col) => {
-        board.markTile(row, col, getActivePlayer().marker);
-        turn++;
-        printNewRound();
+        if (board.markTile(row, col, getActivePlayer().marker)) {
+            turn++;
+            printNewRound();
+        };
     };
 
     const printNewRound = () => {
