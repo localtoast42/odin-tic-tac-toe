@@ -149,11 +149,22 @@ function ScreenController(game) {
             for (col = 0; col < 3; col++) {
                 const tileButton = document.createElement('button');
                 tileButton.classList.add('tile');
+                tileButton.dataset.row = row;
+                tileButton.dataset.col = col;
                 tileButton.textContent = board[row][col];
                 boardDiv.appendChild(tileButton);
             }
         }
     }
+
+    function clickHandlerBoard(e) {
+        const selectedRow = e.target.dataset.row;
+        const selectedCol = e.target.dataset.col;
+        game.playTurn(selectedRow, selectedCol);
+        updateScreen();
+    }
+    
+    boardDiv.addEventListener('click', clickHandlerBoard);
 
     updateScreen();
 }
