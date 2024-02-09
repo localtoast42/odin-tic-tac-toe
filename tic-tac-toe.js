@@ -16,7 +16,7 @@ function createGameboard() {
     const board = []
 
     for (let i = 0; i < 3; i++) {
-        board[i] = 0;
+        board[i] = [];
         for (let j = 0; j < 3; j++) {
             board[i][j] = 0;
         };
@@ -29,7 +29,9 @@ function createGameboard() {
     };
 
     const printBoard = () => {
-        console.log(board);
+        for (i = 0; i < 3; i++) {
+            console.log(board[i]);
+        };
     };
 
     return {
