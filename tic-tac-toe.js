@@ -143,6 +143,7 @@ function ScreenController(game) {
     const boardDiv = document.querySelector('.board');
 
     const updateScreen = () => {
+        boardDiv.textContent = '';
         const board = game.getBoard();
 
         for (row = 0; row < 3; row++) {
@@ -163,7 +164,7 @@ function ScreenController(game) {
         game.playTurn(selectedRow, selectedCol);
         updateScreen();
     }
-    
+
     boardDiv.addEventListener('click', clickHandlerBoard);
 
     updateScreen();
