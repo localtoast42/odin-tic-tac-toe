@@ -170,6 +170,11 @@ function ScreenController(game) {
 
     boardDiv.addEventListener('click', clickHandlerBoard);
 
+    newGameButton.addEventListener('click', () => {
+        game.resetGame();
+        updateScreen();
+    });
+
     updateScreen();
 }
 
