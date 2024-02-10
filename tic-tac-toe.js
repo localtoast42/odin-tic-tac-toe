@@ -64,12 +64,6 @@ function createGameboard() {
         };
     };
 
-    const printBoard = () => {
-        for (i = 0; i < 3; i++) {
-            console.log(board[i]);
-        };
-    };
-
     resetBoard();
 
     return {
@@ -77,7 +71,6 @@ function createGameboard() {
         checkWinCondition,
         getBoard,
         resetBoard,
-        printBoard,
     };
 }
 
@@ -93,13 +86,15 @@ const game = (function () {
     const getActivePlayer = () => players[turn % 2];
 
     const playTurn = (row, col) => {
+        if (winner) {
+            resetGame();
+        };
+
         if (board.markTile(row, col, getActivePlayer().marker)) {
             turn++;
             winner = board.checkWinCondition();
             if (winner || turn === 9) {
                 endGame(winner);
-            } else {
-                printNewRound();
             };
         };
     };
@@ -130,13 +125,6 @@ const game = (function () {
         return wins;
     };
 
-    const printNewRound = () => {
-        board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn`);
-    };
-
-    printNewRound();
-
     return {
         playTurn,
         getActivePlayer,
@@ -151,6 +139,7 @@ function ScreenController(game) {
     const sidebarDiv = document.querySelector('.sidebar');
     const playerOneScoreDiv = document.querySelector('#player-one-score');
     const playerTwoScoreDiv = document.querySelector('#player-two-score');
+    const newGameButton = document.querySelector('.new-game');
 
     const updateScreen = () => {
         boardDiv.textContent = '';
