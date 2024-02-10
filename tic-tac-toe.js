@@ -122,6 +122,14 @@ const game = (function () {
         board.resetBoard();
     };
 
+    const getPlayerWins = () => {
+        const wins = [];
+        for (player of players) {
+            wins.push(player.getWins());
+        };
+        return wins;
+    };
+
     const printNewRound = () => {
         board.printBoard();
         console.log(`${getActivePlayer().name}'s turn`);
@@ -133,6 +141,7 @@ const game = (function () {
         playTurn,
         getActivePlayer,
         resetGame,
+        getPlayerWins,
         getBoard: board.getBoard,
     };
 })();
@@ -140,6 +149,8 @@ const game = (function () {
 function ScreenController(game) {
     const boardDiv = document.querySelector('.board');
     const sidebarDiv = document.querySelector('.sidebar');
+    const playerOneScoreDiv = document.querySelector('#player-one-score');
+    const playerTwoScoreDiv = document.querySelector('#player-two-score');
 
     const updateScreen = () => {
         boardDiv.textContent = '';
@@ -155,6 +166,10 @@ function ScreenController(game) {
                 boardDiv.appendChild(tileButton);
             }
         }
+
+        wins = game.getPlayerWins();
+        playerOneScoreDiv.textContent = wins[0];
+        playerTwoScoreDiv.textContent = wins[1];
     }
 
     function clickHandlerBoard(e) {
