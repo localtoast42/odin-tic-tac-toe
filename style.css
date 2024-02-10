@@ -5,6 +5,7 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    margin: 50px;
 }
 
 .board {
@@ -12,6 +13,60 @@ body {
     grid-template-columns: repeat(3, 200px);
     grid-template-rows: repeat(3, 200px);
     justify-content: center;
+}
+
+.sidebar {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.game-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+button {
+    font-size: 20px;
+}
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 40px 40px;
+}
+
+.player {
+    justify-self: center;
+    align-self: center;
+}
+
+#player-one {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+#player-two {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.score {
+    align-self: center;
+    justify-self: center;
+}
+
+#player-one-score {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+#player-two-score {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
 }
 
 .tile {

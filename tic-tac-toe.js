@@ -139,6 +139,7 @@ const game = (function () {
 
 function ScreenController(game) {
     const boardDiv = document.querySelector('.board');
+    const sidebarDiv = document.querySelector('.sidebar');
 
     const updateScreen = () => {
         boardDiv.textContent = '';
